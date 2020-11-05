@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "842527403815",
+    "firebase_url": "https://fashion-4795e.firebaseio.com",
+    "project_id": "fashion-4795e",
+    "storage_bucket": "fashion-4795e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:842527403815:android:2b5680e9894e44c6ec0302",
+        "android_client_info": {
+          "package_name": "com.alimotie.FashonApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "842527403815-0j610ln7jvh31jbmg6o5qk0a4gfa12ha.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-czRSR78IIqhiY0Z8wYgSofbG5wAE79Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "842527403815-0j610ln7jvh31jbmg6o5qk0a4gfa12ha.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
