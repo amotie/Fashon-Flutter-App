@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "683890213887",
+    "project_id": "yourfashonapp",
+    "storage_bucket": "yourfashonapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:683890213887:android:0133be905b919af1489dca",
+        "android_client_info": {
+          "package_name": "com.alimotie.yourapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "683890213887-ph28uq3k2fqc91qk967ph1aoo6mr42ib.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.alimotie.yourapp",
+            "certificate_hash": "19af81c1326d69f0f8195513835a7855c0793da8"
+          }
+        },
+        {
+          "client_id": "683890213887-64oipfsbeq028n6o42lpeud6nj5q96f8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvFc9IK-pDsq7IwwdtDygAjz3uDaoPwTk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "683890213887-64oipfsbeq028n6o42lpeud6nj5q96f8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

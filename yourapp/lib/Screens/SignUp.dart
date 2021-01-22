@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 
 import 'package:auth_buttons/auth_buttons.dart';
+
 import 'package:yourapp/Screens/Login.dart';
+import 'package:yourapp/Services/LoginService.dart';
+import 'package:yourapp/Services/SignUpService.dart';
 import 'package:yourapp/Validation.dart';
 import 'package:yourapp/const.dart';
 import 'package:yourapp/widegt/CustemRaisedButton.dart';
 import 'package:yourapp/widegt/CustemTextFormFiled.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SignUp extends StatefulWidget {
   static const String id = 'SignUp';
@@ -103,7 +107,7 @@ class _SignUpState extends State<SignUp> {
                                   value, password);
                         });
                       },
-                      onChanged: (value) => password = value,
+                      onChanged: (value) => conferPassword = value,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 15.0),
@@ -130,7 +134,8 @@ class _SignUpState extends State<SignUp> {
                               title: 'SIGN UP',
                               onPressed: () {
                                 setState(() {
-                                  signUp(context);
+                                  SignUpService.signUp(context, username, email,
+                                      password, conferPassword, checkedValue);
                                 });
                               },
                             ),
@@ -141,17 +146,20 @@ class _SignUpState extends State<SignUp> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         FacebookAuthButton(
-                          style: AuthButtonStyle.icon,
-                          // borderRadius: 40.0,
-                          buttonBorderWidth: 0.0,
-                          onPressed: () {},
-                        ),
+                            style: AuthButtonStyle.icon,
+                            // borderRadius: 40.0,
+                            buttonBorderWidth: 0.0,
+                            onPressed: () {
+                              LoginService.loginUsingFacebook(context);
+                            }),
                         GoogleAuthButton(
                           style: AuthButtonStyle.icon,
                           // borderRadius: 40.0,
                           darkMode: true,
                           buttonBorderWidth: 0.0,
-                          onPressed: () {},
+                          onPressed: () {
+                            LoginService.loginUsingGoogle(context);
+                          },
                         )
                       ],
                     ),
@@ -215,25 +223,5 @@ class _SignUpState extends State<SignUp> {
         ),
       ),
     );
-  }
-
-  void signUp(BuildContext context) {
-    userValide = Validation.userValidation(username);
-    emailValide = Validation.emailValidation(email);
-    passwordValide = Validation.passwordValidation(password);
-    confermPasswordValide =
-        Validation.confermPasswordValidation(conferPassword, password);
-    if (!checkedValue) {
-      Scaffold.of(context).showSnackBar(
-        SnackBar(
-          content: Text('please agree the terms and privacy policy'),
-        ),
-      );
-    } else if (!userValide &&
-        !emailValide &&
-        !passwordValide &&
-        !confermPasswordValide) {
-      Navigator.popAndPushNamed(context, Login.id);
-    }
   }
 }
