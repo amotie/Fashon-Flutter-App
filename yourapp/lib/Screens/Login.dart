@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:yourapp/Services/LoginService.dart';
 import 'package:yourapp/widegt/CustemRaisedButton.dart';
 import 'package:yourapp/widegt/CustemTextFormFiled.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:yourapp/Validation.dart';
 import 'package:yourapp/const.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'Home.dart';
 
 class Login extends StatefulWidget {
   static const String id = 'Login';
@@ -112,28 +111,16 @@ class _LoginState extends State<Login> {
               ),
             ),
             CustemRaisedButton(
-              title: 'LOG IN',
-              onPressed: () {
-                setState(() {
-                  emailValide = Validation.emailValidation(email);
-                  passwordValide = Validation.passwordValidation(password);
-                  if (switchON) {
-                    _setLoginToken(email);
-                  }
-                  if (!emailValide && !passwordValide) {
-                    Navigator.popAndPushNamed(context, Home.id);
-                  }
-                });
-              },
-            )
+                title: 'LOG IN',
+                onPressed: () {
+                  setState(() {
+                    LoginService.loginUsingEmail(
+                        context, email, password, switchON);
+                  });
+                }),
           ],
         ),
       ),
     );
-  }
-
-  Future<void> _setLoginToken(String token) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('token', token);
   }
 }

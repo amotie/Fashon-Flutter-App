@@ -1,11 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_login_facebook/flutter_login_facebook.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:yourapp/Screens/Home.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:yourapp/Validation.dart';
 
 class LoginService {
   static void loginUsingFacebook(BuildContext context) async {
@@ -64,5 +67,42 @@ class LoginService {
         'image': account.photoUrl,
       }).then((_) => Navigator.popAndPushNamed(context, Home.id));
     });
+  }
+
+  static void loginUsingEmail(BuildContext context, String email,
+      String password, bool switchON) async {
+    final emailValide = Validation.emailValidation(email);
+    final passwordValide = Validation.passwordValidation(password);
+
+    // if (switchON) {
+    //   _setLoginToken(email);
+    // }
+
+    if (!emailValide && !passwordValide) {
+      Firebase.initializeApp().then((_) {
+        try {
+          FirebaseAuth.instance
+              .signInWithEmailAndPassword(email: email, password: password)
+              .catchError((e) {
+            Scaffold.of(context).showSnackBar(
+              SnackBar(
+                content: Text(e.message),
+              ),
+            );
+          }).then((_) => Navigator.popAndPushNamed(context, Home.id));
+        } on Exception catch (e) {
+          Scaffold.of(context).showSnackBar(
+            SnackBar(
+              content: Text(e.message),
+            ),
+          );
+        }
+      });
+    }
+  }
+
+  static Future<void> _setLoginToken(String token) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('token', token);
   }
 }

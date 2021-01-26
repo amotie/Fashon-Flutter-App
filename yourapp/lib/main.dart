@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
               )),
           // fontFamily: 'Roboto',
         ),
-        initialRoute: isLogedIn ? Home.id : SignUp.id,
+        initialRoute: isLogedIn ? Home.id : Login.id,
         routes: {
           Login.id: (context) => Login(),
           Home.id: (context) => Home(),

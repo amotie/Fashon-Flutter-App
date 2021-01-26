@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:auth_buttons/auth_buttons.dart';
 
-import 'package:yourapp/Screens/Login.dart';
+
 import 'package:yourapp/Services/LoginService.dart';
 import 'package:yourapp/Services/SignUpService.dart';
 import 'package:yourapp/Validation.dart';
 import 'package:yourapp/const.dart';
 import 'package:yourapp/widegt/CustemRaisedButton.dart';
 import 'package:yourapp/widegt/CustemTextFormFiled.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class SignUp extends StatefulWidget {
   static const String id = 'SignUp';
